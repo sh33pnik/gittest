@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Microposts</h1>
+
+<div id="microposts">
+  <% @posts.each do |micropost| %>
+    <%= render micropost %>
+    <p>
+      <%= link_to "Show this micropost", post_user_path(@user) %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New micropost", new_micropost_path %>
+<br>
+<hr>
+<%= link_to "Back to User", user_path(@user)%>
