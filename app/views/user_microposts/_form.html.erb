@@ -1,16 +1,15 @@
-<%= form_with(model: micropost) do |form| %>
+<%
+path = micropost.id ? user_micropost_path(user, micropost) : user_microposts_path(user)
+http_method = micropost.id  ? :patch : :post
+%>
+<%= form_for(micropost, url: path, method: http_method) do |fb| %>
 
   <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_area :content %>
+    <%= fb.label :content, style: "display: block" %>
+    <%= fb.text_area :content %>
   </div>
 
   <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= fb.submit %>
   </div>
 <% end %>

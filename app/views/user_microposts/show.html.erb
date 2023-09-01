@@ -1,11 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @micropost %>
+<%= render "micropost", micropost: @micropost %>
 
 <div>
   <%= link_to "Edit this micropost", edit_user_micropost_path(@user, @micropost) %> |
   <%= link_to "Back to microposts", user_microposts_path(@user) %> |
   <%= link_to "Back to User", user_path(@user) %>
-
-  <%= button_to "Destroy this micropost", @micropost, method: :delete %>
+  <hr>
+  <%= button_to "Destroy this micropost", user_micropost_path(@user, @micropost), method: :delete %>
 </div>

@@ -1,5 +1,7 @@
 class UserMicropostsController < ApplicationController
   before_action :set_user
+  before_action :set_micropost, only: [:show, :edit, :update, :destroy]
+
   def index
     @microposts = @user.microposts
   end
@@ -9,46 +11,31 @@ class UserMicropostsController < ApplicationController
   end
 
   def show
-    @micropost = @user.microposts.find(params[:id])
   end
 
   def edit
-    @micropost = @user.microposts.find(params[:id])
   end
 
   def create
-    @micropost = Micropost.new(micropost_params)
-
-    respond_to do |format|
-      if @micropost.save
-        format.html { redirect_to user_microposts_url(@user), notice: "Micropost was successfully created." }
-        format.json { render :show, status: :created, location: @micropost }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @micropost.errors, status: :unprocessable_entity }
-      end
+    @micropost = @user.microposts.build(micropost_params)
+    if @micropost.save
+      redirect_to user_microposts_url(@user), notice: "Micropost was successfully created."
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @micropost.update(micropost_params)
-        format.html { redirect_to user_micropost_url(@micropost), notice: "Micropost was successfully updated." }
-        format.json { render :show, status: :ok, location: @micropost }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @micropost.errors, status: :unprocessable_entity }
-      end
+    if @micropost.update(micropost_params)
+      redirect_to user_micropost_url(@user, @micropost), notice: "Micropost was successfully updated."
+    else
+      render :edit
     end
-    redirect_to :users
   end
 
   def destroy
     @micropost.destroy
-    respond_to do |format|
-      format.html { redirect_to user_microposts_url(@user), notice: "Micro was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to user_microposts_url(@user), notice: "Micropost was successfully destroyed."
   end
 
   private
@@ -57,7 +44,11 @@ class UserMicropostsController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
+  def set_micropost
+    @micropost = @user.microposts.find(params[:id])
+  end
+
   def micropost_params
-      params.require(:micropost).permit(:content, :user_id)
+      params.require(:micropost).permit(:content)
     end
 end

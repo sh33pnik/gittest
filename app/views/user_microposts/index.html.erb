@@ -4,7 +4,7 @@
 
 <div id="microposts">
   <% @microposts.each do |micropost| %>
-    <%= render micropost %>
+    <%= render "micropost", micropost: micropost%>
     <p>
       <%= link_to "Show this micropost", user_micropost_path(@user, micropost) %>
     </p>

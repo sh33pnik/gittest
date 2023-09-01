@@ -1,2 +1,0 @@
-class UserMicropost < ApplicationRecord
-end
