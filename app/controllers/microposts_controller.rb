@@ -42,7 +42,7 @@ class MicropostsController < ApplicationController
   def update
     respond_to do |format|
       if @micropost.update(micropost_params)
-        format.html { redirect_to micropost_url(@micropost), notice: "Micropost was successfully updated." }
+        format.html { redirect_to micropost_url, notice: "Micropost was successfully updated.Penis" }
         format.json { render :show, status: :ok, location: @micropost }
       else
         format.html { render :edit, status: :unprocessable_entity }

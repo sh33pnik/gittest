@@ -4,8 +4,8 @@
 
 <div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %> |
-  <%= link_to "show posts", user_microposts_path(@user)%>
+  <%= link_to "show posts", user_microposts_path(@user)%> |
+  <%= link_to "Back to users", users_path %>
 
   <br>
   <%= button_to "Destroy this user", @user, method: :delete %>

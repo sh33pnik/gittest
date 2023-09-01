@@ -7,5 +7,5 @@
   <%= link_to "Back to microposts", user_microposts_path(@user) %> |
   <%= link_to "Back to User", user_path(@user) %>
 
-  <%= button_to "Destroy this micropost", user_microposts_path(@user), method: :delete %>
+  <%= button_to "Destroy this micropost", @micropost, method: :delete %>
 </div>

@@ -1,2 +1,9 @@
-<h1>UserMicroposts#edit</h1>
-<p>Find me in app/views/user_microposts/edit.html.erb</p>
+<h1>Editing micropost</h1>
+
+<%= render "form", micropost: @micropost %>
+
+<br>
+  <div>
+    <%= link_to "Show this micropost", user_micropost_path(@user) %> |
+    <%= link_to "Back to microposts", user_microposts_path(@user) %>
+  </div>
